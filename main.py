@@ -1,8 +1,14 @@
 from src.data_processing import filter_dividends_and_interest, process_ativos
 from src.ativo_manager import AtivoManager  # Importa a classe para buscar cotações
+from SpreadsheetCopier import SpreadsheetCopier
 
 def main():
+    # Exemplo de uso:
+    # caminho da planilha de destino (local fixo)
     input_path = 'data/b3_data.xlsx'
+    copiar = SpreadsheetCopier(input_path)
+    copiar.copiar_dados()
+
     
     # Caminhos para os arquivos CSV onde os dividendos e ativos serão salvos
     dividendos_output_path = 'data/dividendos_e_juros.csv'

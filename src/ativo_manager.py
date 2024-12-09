@@ -23,6 +23,7 @@ class AtivoManager:
         """
         try:
             ativo = yf.Ticker(ticker)
+            print(ativo)
             cotacao_atual = ativo.history(period="1d")['Close'][0]
             return cotacao_atual
         except Exception as e:
@@ -46,7 +47,7 @@ class AtivoManager:
             produto = row['Produto']
             ticker_formatado = self._formatar_ticker(produto)
 
-            print(f"Buscando cotação para {produto} ({ticker_formatado})...")
+            # print(f"Buscando cotação para {produto} ({ticker_formatado})...")
             cotacao = self.buscar_cotacao(ticker_formatado)
             
             if cotacao:
