@@ -1,6 +1,7 @@
 from src.data_processing import filter_dividends_and_interest, process_ativos
 from src.ativo_manager import AtivoManager  # Importa a classe para buscar cotações
-from SpreadsheetCopier import SpreadsheetCopier
+from src.Spreadsheet_copier import SpreadsheetCopier
+from src.CSV_manager import CSVManager
 
 def main():
     # Exemplo de uso:
@@ -23,7 +24,16 @@ def main():
     # Após processar os ativos, atualiza as cotações
     print("Atualizando cotações dos ativos...")
     manager = AtivoManager(ativos_output_path)
+
     manager.atualizar_cotacoes()  # Atualiza as cotações no arquivo de ativos processados
+    profile_path = r"C:\\Users\\fla-h\\AppData\\Local\\Google\\Chrome\\User Data"
+
+    csv_manager = CSVManager(ativos_output_path,profile_path)
+        
+    # Carrega os dados
+    csv_manager.load_data()
+    # Processa os produtos
+    csv_manager.process_produtos()
 
 if __name__ == "__main__":
     main()

@@ -52,10 +52,13 @@ class AtivoManager:
             
             if cotacao:
                 df_unique.at[index, 'Cotação Atual'] = cotacao
+                df_unique['Status'] = 'pendente'  # Valor padrão inicial para a nova coluna
         
         # Atualiza o DataFrame original com as cotações atuais
-        df = df.merge(df_unique[['Produto', 'Cotação Atual']], on='Produto', how='left')
+        df = df.merge(df_unique[['Produto', 'Cotação Atual','Status']], on='Produto', how='left')
 
         # Salva o DataFrame atualizado com as cotações no mesmo arquivo CSV
         df.to_csv(self.file_path, index=False)
         print(f"Cotações atualizadas e salvas em: {self.file_path}")
+
+
